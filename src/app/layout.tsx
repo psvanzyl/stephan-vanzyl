@@ -54,8 +54,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl">
-      <body className={`${plexSans.variable} ${plexMono.variable} antialiased`}>{children}</body>
+    // De fontvariabelen moeten op :root staan: Tailwind's preflight leest
+    // --default-font-family (→ --font-sans → --font-plex-sans) op html.
+    <html lang="nl" className={`${plexSans.variable} ${plexMono.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

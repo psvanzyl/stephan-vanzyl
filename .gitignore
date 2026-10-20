@@ -4,6 +4,3 @@ out
 *.tsbuildinfo
 .env*
 !.env.example
-
-# Derde-partij screenshot (analyse-artefact) niet publiceren
-docs/rea-screenshot.json
