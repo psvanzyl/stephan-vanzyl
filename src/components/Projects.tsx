@@ -11,7 +11,7 @@ export function Projects() {
   const slots = [1, 2, 3];
 
   return (
-    <section id="projecten" className="border-y border-line bg-surface-alt py-20 lg:py-28">
+    <section id="projecten" className="bg-surface-alt py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">

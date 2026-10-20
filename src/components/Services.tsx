@@ -26,25 +26,45 @@ const ICONS: Record<string, React.ReactNode> = {
       <rect x="14" y="3" width="7" height="11" rx="1.5" />
     </>
   ),
+  layers: (
+    <>
+      <path d="M12 3l9 5-9 5-9-5 9-5z" />
+      <path d="M3 13l9 5 9-5" />
+    </>
+  ),
+  share: (
+    <>
+      <circle cx="6" cy="12" r="2.5" />
+      <circle cx="18" cy="6" r="2.5" />
+      <circle cx="18" cy="18" r="2.5" />
+      <path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" />
+    </>
+  ),
 };
 
+/**
+ * Diensten — net als in het voorbeeld een kaartenrij die over de onderkant van
+ * de hero heen valt (-mt-16). De eerste kaart is de inleiding (in de
+ * accentkleur), daarna de diensten zelf. Zes kaarten in een 3-koloms raster.
+ */
 export function Services() {
   return (
-    <section id="diensten" className="border-b border-line bg-surface py-20 lg:py-28">
+    <section id="diensten" className="relative z-10 -mt-16 pb-20 pt-0">
       <div className="mx-auto max-w-[1280px] px-6">
-        <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
-            {site.services.eyebrow}
-          </p>
-          <h2 className="mt-4 max-w-3xl text-[30px] leading-tight sm:text-[36px]">
-            {site.services.title}
-          </h2>
-        </Reveal>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal>
+            <article className="flex h-full flex-col justify-between rounded-xl bg-accent p-7 text-white shadow-[0_18px_50px_-30px_rgba(25,20,20,0.5)]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/75">
+                {site.services.eyebrow}
+              </p>
+              <h2 className="mt-8 text-[26px] leading-tight font-light">{site.services.title}</h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-white/85">{site.services.intro}</p>
+            </article>
+          </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {site.services.items.map((service, i) => (
-            <Reveal key={service.title} delay={i * 90}>
-              <article className="flex h-full flex-col rounded-xl border border-line bg-surface p-7 transition-shadow hover:shadow-[0_10px_40px_-18px_rgba(25,20,20,0.35)]">
+            <Reveal key={service.title} delay={(i + 1) * 70}>
+              <article className="flex h-full flex-col rounded-xl border border-line bg-surface p-7 shadow-[0_18px_50px_-34px_rgba(25,20,20,0.45)] transition-shadow hover:shadow-[0_22px_60px_-30px_rgba(25,20,20,0.5)]">
                 <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent">
                   <svg
                     width="21"
@@ -60,7 +80,7 @@ export function Services() {
                     {ICONS[service.icon]}
                   </svg>
                 </span>
-                <h3 className="mt-6 text-[20px] leading-snug">{service.title}</h3>
+                <h3 className="mt-6 text-[19px] leading-snug">{service.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-muted-fg">{service.body}</p>
               </article>
             </Reveal>

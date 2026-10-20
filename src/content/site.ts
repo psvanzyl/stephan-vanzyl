@@ -19,7 +19,7 @@ export type Slide = {
 export type Service = {
   title: string;
   body: string;
-  icon: "compass" | "trending" | "code" | "kanban";
+  icon: "compass" | "trending" | "code" | "kanban" | "layers" | "share";
 };
 
 export type FocusArea = {
@@ -32,6 +32,12 @@ export type ApproachStep = {
   step: string;
   title: string;
   body: string;
+};
+
+export type Source = {
+  name: string;
+  desc: string;
+  url: string;
 };
 
 export type SoftwareItem = {
@@ -58,10 +64,10 @@ export const site = {
   },
 
   nav: [
+    { label: "Home", href: "#page-top" },
     { label: "Over", href: "#over" },
     { label: "Diensten", href: "#diensten" },
     { label: "Focusgebieden", href: "#focusgebieden" },
-    { label: "Aanpak", href: "#aanpak" },
     { label: "Projecten", href: "#projecten" },
     { label: "Software", href: "#software" },
     { label: "Contact", href: "#contact" },
@@ -88,6 +94,8 @@ export const site = {
   services: {
     eyebrow: "Diensten",
     title: "Consultancy & onderzoek",
+    intro:
+      "Van vraagstuk tot werkende oplossing: advies, data en software voor transport, logistiek en mobiliteit.",
     items: [
       {
         title: "Advies & onderzoek",
@@ -109,8 +117,60 @@ export const site = {
         body: "Begeleiding van projecten en programma's, van pilot naar implementatie, inclusief samenwerking met partners.",
         icon: "kanban",
       },
+      {
+        title: "Open data & standaarden",
+        body: "Werken met openbare bronnen en standaarden (NDW, RDW, PDOK, OCPI) zodat resultaten navolgbaar en herbruikbaar zijn.",
+        icon: "layers",
+      },
     ] as Service[],
   },
+
+  /**
+   * Open bronnen en standaarden waarop de analyses en tools zijn gebaseerd.
+   * Bewust met de echte links erbij, zodat elke bewering na te lopen is.
+   */
+  sources: [
+    {
+      name: "NDW",
+      desc: "Nationale Databank Wegverkeersgegevens: laadpunten, iVRI's, verkeers- en netwerkdata.",
+      url: "https://www.ndw.nu/",
+    },
+    {
+      name: "RDW open data",
+      desc: "Voertuig- en parkeerdata, inclusief het Nationaal Parkeer Register.",
+      url: "https://opendata.rdw.nl/",
+    },
+    {
+      name: "PDOK",
+      desc: "Geografische open data: grenzen, gebouwen, netwerken en achtergrondkaarten.",
+      url: "https://www.pdok.nl/",
+    },
+    {
+      name: "CBS",
+      desc: "Statistiek over bevolking, bedrijven, vervoer en ruimte.",
+      url: "https://www.cbs.nl/",
+    },
+    {
+      name: "RVO — AanZET",
+      desc: "Subsidieregeling voor zero-emissie vrachtwagens.",
+      url: "https://www.rvo.nl/subsidies-financiering/aanzet",
+    },
+    {
+      name: "NAL",
+      desc: "Nationale Agenda Laadinfrastructuur: afspraken en cijfers over laadpunten.",
+      url: "https://www.agendalaadinfrastructuur.nl/",
+    },
+    {
+      name: "EV Roaming Foundation",
+      desc: "OCPI-standaard voor het uitwisselen van laadpunt- en prijsdata.",
+      url: "https://evroaming.org/",
+    },
+    {
+      name: "Rijkswaterstaat",
+      desc: "Weg-, water- en verkeersdata en projectinformatie.",
+      url: "https://www.rijkswaterstaat.nl/",
+    },
+  ] as Source[],
 
   /**
    * Over mij — biografie, ervaring en opleiding zijn nog niet aangeleverd en

@@ -6,10 +6,10 @@ export function References() {
   const quotes = site.references.quotes;
 
   return (
-    <section id="referenties" className="bg-night py-20 text-white lg:py-28">
+    <section id="referenties" className="bg-night py-20 text-white">
       <div className="mx-auto max-w-[1280px] px-6">
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#7ec8cf]">
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#8fc7e0]">
             {site.references.eyebrow}
           </p>
           <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">

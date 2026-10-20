@@ -15,7 +15,7 @@ export function About() {
   const slide = slides[index];
 
   return (
-    <section id="over" className="bg-surface py-20 lg:py-28">
+    <section id="over" className="bg-surface py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>

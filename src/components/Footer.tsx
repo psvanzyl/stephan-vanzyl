@@ -54,8 +54,39 @@ export function Footer() {
               ) : (
                 <li className="text-white/35">LinkedIn — nog aan te vullen</li>
               )}
+              {site.contact.location ? (
+                <li className="text-white/70">{site.contact.location}</li>
+              ) : (
+                <li className="text-white/35">Locatie — nog aan te vullen</li>
+              )}
+              {site.contact.kvk ? (
+                <li className="text-white/70">KvK {site.contact.kvk}</li>
+              ) : (
+                <li className="text-white/35">KvK — nog aan te vullen</li>
+              )}
             </ul>
           </div>
+        </div>
+
+        {/* Bronnen: de openbare registers en standaarden achter het werk. */}
+        <div className="mt-12 border-t border-white/10 pt-7">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
+            Bronnen
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2.5">
+            {site.sources.map((source) => (
+              <li key={source.url}>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] text-white/60 hover:text-white"
+                >
+                  {source.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-7 text-[12.5px] text-white/40 sm:flex-row sm:items-center sm:justify-between">

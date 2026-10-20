@@ -13,7 +13,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="border-t border-line bg-surface-alt py-20 lg:py-28">
+    <section id="contact" className="border-t border-line bg-surface-alt py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <Reveal>

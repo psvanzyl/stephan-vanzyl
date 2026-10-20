@@ -2,19 +2,26 @@
 
 /*
  * Ontwerpsysteem — bewust terughoudend, in dezelfde geest als het voorbeeld
- * (transportbeat.nl): neutrale oppervlakken, veel witruimte, lichte
- * koppen en één accentkleur. Eén plek om de site te herkleuren.
+ * (transportbeat.nl): neutrale oppervlakken, veel witruimte, lichte koppen en
+ * één accentkleur. Eén plek om de site te herkleuren.
+ *
+ * De waarden zijn overgenomen uit de gemeten stijlen van het voorbeeld:
+ * accent #2E7FA6 (rgb 46,127,166), tekst #191414 (rgb 25,20,20), oppervlakken
+ * #FFFFFF en #F6F6F6, en de neutrale grijzen van de standaardschaal.
  */
 @theme {
   --color-ink: #191414;
-  --color-ink-soft: #514a4a;
-  --color-muted-fg: #6f6868;
-  --color-accent: #0f5c63;
-  --color-accent-dark: #0a464c;
-  --color-accent-soft: #e7f0f0;
+  --color-ink-soft: #374151;
+  --color-muted-fg: #4b5563;
+  --color-faint-fg: #9ca3af;
+  --color-accent: #2e7fa6;
+  --color-accent-dark: #256a8c;
+  --color-accent-soft: #e8f2f8;
   --color-surface: #ffffff;
   --color-surface-alt: #f6f6f6;
-  --color-line: #e6e4e2;
+  --color-surface-mute: #f3f4f6;
+  --color-line: #e5e7eb;
+  --color-line-strong: #d1d5db;
   --color-night: #000000;
 
   --font-sans: var(--font-plex-sans), system-ui, -apple-system, sans-serif;
@@ -66,7 +73,7 @@ h4 {
   background: var(--color-surface-alt);
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9c6c3;
+  background: #cbd5e1;
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {

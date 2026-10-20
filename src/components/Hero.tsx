@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 
@@ -8,6 +9,10 @@ const INTERVAL = 6000;
 /**
  * Hero met roterende activiteitenfoto's — geen portret. De persoon komt later
  * op de pagina (sectie "Over"), net als in het voorbeeld.
+ *
+ * Opbouw volgt het voorbeeld: min-h-[80vh], volledig beeldvullende foto's via
+ * next/image (met srcset, dus ook een kleine variant op mobiel) en een lichte
+ * h1 van 72px.
  */
 export function Hero() {
   const slides = site.hero.slides;
@@ -22,8 +27,8 @@ export function Hero() {
 
   return (
     <section
-      id="top"
-      className="relative isolate flex min-h-[86vh] items-center overflow-hidden bg-night text-white"
+      id="page-top"
+      className="relative isolate flex min-h-[80vh] items-center overflow-hidden bg-night text-white"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -33,21 +38,21 @@ export function Hero() {
           className={`hero-slide absolute inset-0 ${i === index ? "opacity-100" : "opacity-0"}`}
           aria-hidden={i !== index}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={slide.src}
             alt={slide.alt}
-            className={`h-full w-full object-cover ${i === index ? "hero-zoom" : ""}`}
-            loading={i === 0 ? "eager" : "lazy"}
-            fetchPriority={i === 0 ? "high" : "low"}
-            decoding="async"
+            fill
+            sizes="100vw"
+            quality={75}
+            priority={i === 0}
+            className={`object-cover ${i === index ? "hero-zoom" : ""}`}
           />
         </div>
       ))}
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/70" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pt-32 pb-24">
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pt-32 pb-28">
         <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-white/65">
           {site.hero.kicker}
         </p>
@@ -55,7 +60,7 @@ export function Hero() {
         <h1 className="mt-6 max-w-4xl text-[38px] leading-[1.08] font-light tracking-tight sm:text-[54px] lg:text-[72px]">
           {site.hero.title}
           <br />
-          <span className="text-[#7ec8cf]">{site.hero.titleAccent}</span>
+          <span className="text-[#8fc7e0]">{site.hero.titleAccent}</span>
         </h1>
 
         <p className="mt-7 max-w-2xl text-[17px] leading-relaxed text-white/80">

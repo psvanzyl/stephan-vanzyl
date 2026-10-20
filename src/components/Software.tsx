@@ -30,7 +30,7 @@ export function Software() {
   );
 
   return (
-    <section id="software" className="bg-surface py-20 lg:py-28">
+    <section id="software" className="bg-surface py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
@@ -113,6 +113,43 @@ export function Software() {
             </Reveal>
           ))}
         </div>
+
+        {/*
+          Open bronnen: waar de data vandaan komt. Dit maakt de tools
+          navolgbaar en legt de link naar de standaarden en registers.
+        */}
+        <Reveal delay={60}>
+          <div className="mt-16 rounded-xl border border-line bg-surface-alt p-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-fg">
+              Open bronnen &amp; standaarden
+            </p>
+            <h3 className="mt-4 text-[21px] leading-snug">
+              De data achter deze tools is openbaar — en na te lopen
+            </h3>
+            <ul className="mt-6 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+              {site.sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    <span className="text-[15px] font-medium text-ink group-hover:text-accent">
+                      {source.name}
+                      <span className="ml-1 inline-block text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                        ↗
+                      </span>
+                    </span>
+                    <span className="mt-1 block text-[13.5px] leading-relaxed text-muted-fg">
+                      {source.desc}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 
 export function Approach() {
   return (
-    <section id="aanpak" className="bg-surface py-20 lg:py-28">
+    <section id="aanpak" className="bg-surface py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal>
