@@ -141,7 +141,11 @@ export function About() {
                     <h3 className="mb-4 text-2xl font-semibold text-ink md:text-3xl">
                       {about.vision.title}
                     </h3>
-                    <p className="leading-relaxed text-muted-fg">{about.vision.body}</p>
+                    {about.vision.body ? (
+                      <p className="leading-relaxed text-muted-fg">{about.vision.body}</p>
+                    ) : (
+                      <Todo label="Visietekst" />
+                    )}
                   </div>
                   <div>
                     <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">

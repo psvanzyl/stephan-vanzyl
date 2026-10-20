@@ -118,7 +118,7 @@ export const about = {
     title: "Visie",
     eyebrow: site.role,
     name: site.name,
-    body: "// TODO: visie-tekst aanleveren.",
+    body: null as Maybe<string>,
     // TODO: visie-tekst aanleveren
     points: [
       "Open data en open standaarden als uitgangspunt",
@@ -388,7 +388,7 @@ export const contact = {
   heading: "Neem contact op",
   lead: "Heeft u vragen of wilt u meer informatie? Neem gerust contact op.",
   messageTitle: "Stuur een bericht",
-  messageBody: "// TODO: contactmogelijkheden aanleveren (e-mailadres, LinkedIn).",
+  messageBody: null as Maybe<string>,
   detailsTitle: "Contactgegevens",
 };
 

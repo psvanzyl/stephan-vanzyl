@@ -32,7 +32,11 @@ export function Contact() {
           <Reveal>
             <div className="h-full rounded-2xl border border-line bg-white p-8 shadow-sm">
               <h3 className="mb-4 text-xl font-semibold text-ink">{contact.messageTitle}</h3>
-              <p className="leading-relaxed text-muted-fg">{contact.messageBody}</p>
+              {contact.messageBody ? (
+                <p className="leading-relaxed text-muted-fg">{contact.messageBody}</p>
+              ) : (
+                <Todo label="Contactmogelijkheden" />
+              )}
               {site.email ? (
                 <a
                   href={`mailto:${site.email}`}
