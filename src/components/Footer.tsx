@@ -1,83 +1,71 @@
-import { nav, site, footer } from "@/content/site";
+import { site } from "@/content/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink-900 pt-16 text-white/75">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-          <div className="md:col-span-2">
-            <p className="text-xl font-semibold text-white">{site.name}</p>
-            <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-shallow">
-              {site.role}
+    <footer className="bg-night py-14 text-white">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+          <div>
+            <p className="text-[18px] font-medium tracking-tight">{site.name}</p>
+            <p className="mt-2 max-w-sm text-[14px] leading-relaxed text-white/55">
+              {site.role} — {site.tagline}
             </p>
-            <p className="mt-5 max-w-md leading-relaxed">{footer.blurb}</p>
           </div>
 
-          <div>
-            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-shallow">
-              {footer.quickLinksTitle}
-            </h3>
-            <ul className="space-y-2.5">
-              {nav.map((item) => (
+          <nav aria-label="Voetnavigatie">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">Menu</p>
+            <ul className="mt-4 space-y-2.5">
+              {site.nav.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="text-sm transition-colors hover:text-white">
+                  <a href={item.href} className="text-[14px] text-white/70 hover:text-white">
                     {item.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           <div>
-            <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-shallow">
-              Contact
-            </h3>
-            <ul className="space-y-2.5 text-sm">
-              {site.email ? (
-                <li>
-                  <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">
-                    {site.email}
-                  </a>
-                </li>
-              ) : (
-                <li className="text-white/45">E-mail volgt</li>
-              )}
-              {site.phone ? (
-                <li>
-                  <a href={`tel:${site.phone}`} className="transition-colors hover:text-white">
-                    {site.phone}
-                  </a>
-                </li>
-              ) : (
-                <li className="text-white/45">Telefoon volgt</li>
-              )}
-              {site.linkedin ? (
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">Contact</p>
+            <ul className="mt-4 space-y-2.5 text-[14px]">
+              {site.contact.email && (
                 <li>
                   <a
-                    href={site.linkedin}
+                    href={`mailto:${site.contact.email}`}
+                    className="text-white/70 hover:text-white"
+                  >
+                    {site.contact.email}
+                  </a>
+                </li>
+              )}
+              {site.contact.linkedin ? (
+                <li>
+                  <a
+                    href={site.contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition-colors hover:text-white"
+                    className="text-white/70 hover:text-white"
                   >
                     LinkedIn
                   </a>
                 </li>
               ) : (
-                <li className="text-white/45">LinkedIn volgt</li>
+                <li className="text-white/35">LinkedIn — nog aan te vullen</li>
               )}
-              <li>{site.location}</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 text-sm sm:flex-row">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-7 text-[12.5px] text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.name}. Alle rechten voorbehouden.
+            © {year} {site.name}
           </p>
-          <p className="font-mono text-xs uppercase tracking-wider text-white/40">
-            {site.kvk ? `KvK ${site.kvk}` : "KvK volgt"} · {site.btw ? `BTW ${site.btw}` : "BTW volgt"}
+          <p>
+            <a href={site.footer.photoCredits} className="hover:text-white/70">
+              {site.footer.note}
+            </a>
           </p>
         </div>
       </div>

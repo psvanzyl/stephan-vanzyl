@@ -1,88 +1,112 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { software } from "@/content/site";
+import { site } from "@/content/site";
+import { Reveal } from "./Reveal";
 
+/**
+ * Software & prototypes: de live tools van Stephan. Kaarten met echte
+ * schermafbeeldingen en werkende links — dit is het bewijs, niet een claim.
+ */
 export function Software() {
-  const [filter, setFilter] = useState("Alles");
+  const { filters, items } = site.software;
+  const [active, setActive] = useState<string>(filters[0]);
 
-  const items = useMemo(
+  const counts = useMemo(() => {
+    const map = new Map<string, number>();
+    map.set(filters[0], items.length);
+    for (const filter of filters.slice(1)) {
+      map.set(filter, items.filter((i) => (i.tags as readonly string[]).includes(filter)).length);
+    }
+    return map;
+  }, [filters, items]);
+
+  const visible = useMemo(
     () =>
-      filter === "Alles"
-        ? software.items
-        : software.items.filter((item) => item.tags.includes(filter)),
-    [filter],
+      active === filters[0]
+        ? items
+        : items.filter((i) => (i.tags as readonly string[]).includes(active)),
+    [active, filters, items],
   );
 
   return (
-    <section id="software" className="bg-white py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        <Reveal className="mb-10">
-          <h2 className="mb-4 text-4xl font-light text-ink md:text-5xl">{software.heading}</h2>
-          <p className="max-w-3xl text-muted-fg">{software.lead}</p>
+    <section id="software" className="bg-surface py-20 lg:py-28">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+            {site.software.eyebrow}
+          </p>
+          <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.software.title}</h2>
+          <p className="mt-5 max-w-3xl text-[16px] leading-relaxed text-ink-soft">
+            {site.software.intro}
+          </p>
         </Reveal>
 
-        <Reveal className="mb-10">
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter op categorie">
-            {software.filters.map((f) => {
-              const active = f === filter;
+        <Reveal delay={80}>
+          <div className="mt-10 flex flex-wrap items-center gap-2 border-b border-line pb-6">
+            {filters.map((filter) => {
+              const isActive = filter === active;
               return (
                 <button
-                  key={f}
+                  key={filter}
                   type="button"
-                  role="tab"
-                  aria-selected={active}
-                  onClick={() => setFilter(f)}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                    active
-                      ? "border-sea bg-sea text-white"
-                      : "border-line bg-white text-ink hover:border-sea hover:text-sea"
+                  onClick={() => setActive(filter)}
+                  aria-pressed={isActive}
+                  className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-[14px] transition-colors ${
+                    isActive
+                      ? "border-accent bg-accent text-white"
+                      : "border-line text-ink-soft hover:border-accent hover:text-accent"
                   }`}
                 >
-                  {f}
+                  {filter}
+                  <span
+                    className={`font-mono text-[11px] ${isActive ? "text-white/70" : "text-muted-fg"}`}
+                  >
+                    {counts.get(filter) ?? 0}
+                  </span>
                 </button>
               );
             })}
           </div>
         </Reveal>
 
-        <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-fg">
-          {items.length} van {software.items.length} toepassingen
-        </p>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((item, i) => (
-            <Reveal key={item.title} delay={Math.min(i, 6) * 0.05}>
+        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((item, i) => (
+            <Reveal key={item.slug} delay={(i % 3) * 90}>
               <a
-                href={item.href}
+                href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-full flex-col rounded-xl border border-line bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-24px_rgba(25,20,20,0.45)]"
               >
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-semibold text-ink transition-colors group-hover:text-sea">
-                    {item.title}
-                  </h3>
-                  <ArrowUpRight
-                    className="mt-0.5 h-4 w-4 shrink-0 text-muted-fg transition-colors group-hover:text-sea"
-                    aria-hidden="true"
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-surface-alt">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.shot}
+                    alt={`Schermafbeelding van ${item.name}`}
+                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-muted-fg">{item.body}</p>
-                <div className="flex flex-wrap items-center gap-2">
-                  {item.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-muted px-2.5 py-1 font-mono text-[11px] uppercase tracking-wide text-muted-fg"
-                    >
-                      {t}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-wrap gap-2">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-accent-soft px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-accent"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="mt-4 text-[19px] leading-snug">{item.name}</h3>
+                  <p className="mt-3 text-[14.5px] leading-relaxed text-muted-fg">{item.desc}</p>
+                  <span className="mt-auto pt-6 text-[14px] font-medium text-accent">
+                    Bekijk de app
+                    <span className="ml-1.5 inline-block transition-transform group-hover:translate-x-1">
+                      →
                     </span>
-                  ))}
-                  <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wide text-sea">
-                    <span className="h-1.5 w-1.5 rounded-full bg-shallow" aria-hidden="true" />
-                    live
                   </span>
                 </div>
               </a>

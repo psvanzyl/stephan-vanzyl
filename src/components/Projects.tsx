@@ -1,94 +1,65 @@
-import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { Todo } from "@/components/Todo";
-import { projects } from "@/content/site";
+import { site } from "@/content/site";
+import { Reveal } from "./Reveal";
+import { Todo } from "./Todo";
 
+/**
+ * Projecten & opdrachten. Nog geen projectinformatie aangeleverd, dus de
+ * sectie toont een bewust gereserveerd skelet in plaats van verzonnen werk.
+ */
 export function Projects() {
+  const items = site.projects.items;
+  const slots = [1, 2, 3];
+
   return (
-    <section id="projecten" className="bg-muted py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        <Reveal className="mb-12">
-          <h2 className="mb-4 text-4xl font-light text-ink md:text-5xl">{projects.heading}</h2>
-          <p className="text-muted-fg">{projects.lead}</p>
+    <section id="projecten" className="border-y border-line bg-surface-alt py-20 lg:py-28">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+            {site.projects.eyebrow}
+          </p>
+          <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.projects.title}</h2>
+          <p className="mt-5 max-w-3xl text-[16px] leading-relaxed text-ink-soft">
+            {site.projects.intro}
+          </p>
         </Reveal>
 
-        <div className="space-y-8">
-          {projects.items.map((project, i) => (
-            <Reveal key={project.title} delay={i * 0.05}>
-              <article className="rounded-2xl border border-line bg-white p-6 shadow-sm md:p-9">
-                <div className="mb-5 flex flex-wrap items-center gap-3">
-                  {project.period ? (
-                    <span className="rounded-full bg-ink px-3 py-1 font-mono text-xs text-white">
-                      {project.period}
-                    </span>
-                  ) : (
-                    <Todo label="Periode" />
-                  )}
-                  {project.scope ? (
-                    <span className="rounded-full bg-muted px-3 py-1 font-mono text-xs text-ink">
-                      {project.scope}
-                    </span>
-                  ) : (
-                    <Todo label="Omvang" />
-                  )}
-                </div>
-
-                <h3 className="mb-4 text-2xl font-semibold text-ink md:text-3xl">
-                  {project.title}
-                </h3>
-                <p className="mb-6 max-w-3xl leading-relaxed text-muted-fg">{project.body}</p>
-
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <div>
-                    <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                      Activiteiten
-                    </h4>
-                    <ul className="space-y-2">
-                      {project.activities.map((a) => (
-                        <li key={a} className="flex gap-3 text-sm text-ink">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-shallow" />
-                          {a}
-                        </li>
-                      ))}
-                    </ul>
+        {items.length === 0 ? (
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {slots.map((slot, i) => (
+              <Reveal key={slot} delay={i * 90}>
+                <article className="flex h-full flex-col rounded-xl border border-dashed border-line bg-surface p-7">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-fg">
+                    Project {String(slot).padStart(2, "0")}
+                  </span>
+                  <div className="mt-6 space-y-3" aria-hidden="true">
+                    <div className="h-4 w-2/3 rounded-full bg-line" />
+                    <div className="h-3 w-1/3 rounded-full bg-line/70" />
+                    <div className="mt-5 h-3 w-full rounded-full bg-line/70" />
+                    <div className="h-3 w-11/12 rounded-full bg-line/70" />
+                    <div className="h-3 w-3/4 rounded-full bg-line/70" />
                   </div>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                        Opdrachtgever
-                      </h4>
-                      {project.client ? (
-                        <p className="text-sm text-ink">{project.client}</p>
-                      ) : (
-                        <Todo />
-                      )}
-                    </div>
-                    <div>
-                      <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                        Live
-                      </h4>
-                      <ul className="flex flex-wrap gap-2">
-                        {project.links.map((l) => (
-                          <li key={l.href}>
-                            <a
-                              href={l.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-sm font-medium text-ink transition-colors hover:border-sea hover:text-sea"
-                            >
-                              {l.label}
-                              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="mt-auto pt-7">
+                    <Todo label="Project volgt" />
                   </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {items.map((project, i) => (
+              <Reveal key={project.title} delay={i * 90}>
+                <article className="h-full rounded-xl border border-line bg-surface p-7">
+                  <h3 className="text-[20px]">{project.title}</h3>
+                  <p className="mt-2 font-mono text-[12px] tracking-wide text-muted-fg">
+                    {[project.client, project.period].filter(Boolean).join(" · ")}
+                  </p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">{project.body}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,69 +1,114 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { hero } from "@/content/site";
+import { site } from "@/content/site";
 
+const INTERVAL = 6000;
+
+/**
+ * Hero met roterende activiteitenfoto's — geen portret. De persoon komt later
+ * op de pagina (sectie "Over"), net als in het voorbeeld.
+ */
 export function Hero() {
+  const slides = site.hero.slides;
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const id = window.setInterval(() => {
-      setIndex((v) => (v + 1) % hero.backgrounds.length);
-    }, 6000);
-    return () => window.clearInterval(id);
-  }, []);
+    if (paused) return;
+    const t = window.setInterval(() => setIndex((i) => (i + 1) % slides.length), INTERVAL);
+    return () => window.clearInterval(t);
+  }, [paused, slides.length]);
 
   return (
-    <section className="relative flex min-h-[80vh] w-full items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        {hero.backgrounds.map((src, i) => (
-          <div
-            key={src}
-            className="hero-fade absolute inset-0"
-            style={{ opacity: i === index ? 1 : 0 }}
-            aria-hidden={i !== index}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt="" className="h-full w-full object-cover" />
-          </div>
-        ))}
-        <div className="absolute inset-0 bg-ink/70" />
-      </div>
+    <section
+      id="top"
+      className="relative isolate flex min-h-[86vh] items-center overflow-hidden bg-night text-white"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {slides.map((slide, i) => (
+        <div
+          key={slide.src}
+          className={`hero-slide absolute inset-0 ${i === index ? "opacity-100" : "opacity-0"}`}
+          aria-hidden={i !== index}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            className={`h-full w-full object-cover ${i === index ? "hero-zoom" : ""}`}
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchPriority={i === 0 ? "high" : "low"}
+            decoding="async"
+          />
+        </div>
+      ))}
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-shallow sm:text-sm">
-          {hero.eyebrow}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/70" />
+
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pt-32 pb-24">
+        <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-white/65">
+          {site.hero.kicker}
         </p>
-        <h1 className="mb-6 text-4xl font-light text-white sm:text-6xl lg:text-7xl">
-          {hero.title}
+
+        <h1 className="mt-6 max-w-4xl text-[38px] leading-[1.08] font-light tracking-tight sm:text-[54px] lg:text-[72px]">
+          {site.hero.title}
+          <br />
+          <span className="text-[#7ec8cf]">{site.hero.titleAccent}</span>
         </h1>
-        <p className="mx-auto mb-10 max-w-2xl text-lg text-white/85 sm:text-xl">
-          {hero.subtitle}
+
+        <p className="mt-7 max-w-2xl text-[17px] leading-relaxed text-white/80">
+          {site.hero.subtitle}
         </p>
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+
+        <div className="mt-10 flex flex-wrap items-center gap-3">
           <a
-            href={hero.primaryCta.href}
-            className="inline-flex w-full items-center justify-center rounded-lg bg-sea px-8 py-4 font-semibold text-white transition-colors hover:bg-sea-light sm:w-auto"
+            href={site.hero.primary.href}
+            className="rounded-full bg-accent px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
           >
-            {hero.primaryCta.label}
+            {site.hero.primary.label}
           </a>
           <a
-            href={hero.secondaryCta.href}
-            className="inline-flex w-full items-center justify-center rounded-lg border-2 border-white/70 px-8 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-ink sm:w-auto"
+            href={site.hero.secondary.href}
+            className="rounded-full border border-white/35 px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:border-white/70 hover:bg-white/10"
           >
-            {hero.secondaryCta.label}
+            {site.hero.secondary.label}
           </a>
         </div>
       </div>
 
-      <a
-        href="#diensten"
-        aria-label="Naar beneden"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 rounded-full p-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-      >
-        <ChevronDown className="h-7 w-7 animate-bounce" aria-hidden="true" />
-      </a>
+      {/* Roterende beelden: bedienbaar, en het label vertelt wat je ziet. */}
+      <div className="absolute inset-x-0 bottom-0 z-10 border-t border-white/15 bg-black/25 backdrop-blur-[2px]">
+        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/70">
+            <span className="text-white">
+              {String(index + 1).padStart(2, "0")}/{String(slides.length).padStart(2, "0")}
+            </span>
+            <span className="mx-2 text-white/30">—</span>
+            {slides[index].caption}
+          </p>
+
+          <div className="flex items-center gap-1">
+            {slides.map((slide, i) => (
+              <button
+                key={slide.src}
+                type="button"
+                onClick={() => setIndex(i)}
+                aria-label={`Toon beeld ${i + 1}: ${slide.caption}`}
+                aria-current={i === index}
+                className="group flex h-11 w-11 items-center justify-center"
+              >
+                <span
+                  className={`block h-2.5 rounded-full transition-all ${
+                    i === index ? "w-7 bg-white" : "w-2.5 bg-white/45 group-hover:bg-white/75"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

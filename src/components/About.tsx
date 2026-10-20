@@ -1,201 +1,105 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Todo, TodoLine } from "@/components/Todo";
-import { about, site } from "@/content/site";
+import { site } from "@/content/site";
+import { Reveal } from "./Reveal";
+import { Todo, PlaceholderLines } from "./Todo";
 
-/** Slides met dezelfde opbouw als het voorbeeld: donker portretpaneel links,
- *  inhoudspaneel rechts. Portretfoto ontbreekt nog → monogram als fallback. */
-function Portrait({ label }: { label: string }) {
-  return (
-    <div className="relative h-full w-full bg-ink-900">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-mono text-6xl font-medium tracking-tight text-white/15">
-          {site.name
-            .split(" ")
-            .map((w) => w[0])
-            .slice(0, 3)
-            .join("")}
-        </span>
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/30 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-ink-900/40" />
-      <div className="absolute bottom-0 left-0 right-0 z-10 p-6">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-shallow">{label}</p>
-        <p className="mt-1 text-xl font-medium text-white">{site.name}</p>
-        <div className="mt-3">
-          <Todo label="Foto" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
+/**
+ * "Over" — hier komt de persoon (portret + tekst). De inhoud is nog niet
+ * aangeleverd, dus de tekstvlakken zijn zichtbaar gereserveerd.
+ */
 export function About() {
+  const slides = site.about.slides;
   const [index, setIndex] = useState(0);
-  const slides = [about.intro, about.expertise, about.vision];
-  const total = slides.length;
-  const go = (dir: number) => setIndex((v) => (v + dir + total) % total);
-
   const slide = slides[index];
 
   return (
-    <section id="over" className="bg-white py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-light text-ink sm:text-4xl">{about.heading}</h2>
-        </div>
+    <section id="over" className="bg-surface py-20 lg:py-28">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-br from-accent to-accent-dark">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span className="text-[76px] leading-none font-light text-white/90">SvZ</span>
+                <span className="mt-5 font-mono text-[11px] uppercase tracking-[0.24em] text-white/60">
+                  Portret volgt
+                </span>
+              </div>
+            </div>
+          </Reveal>
 
-        <div className="overflow-hidden rounded-2xl">
-          <div className="grid min-h-[550px] grid-cols-1 overflow-hidden rounded-2xl bg-ink-900 lg:grid-cols-12 md:min-h-[450px]">
-            <div className="relative lg:col-span-4">
-              <Portrait label={slide.eyebrow} />
+          <Reveal delay={120}>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+              {site.about.eyebrow}
+            </p>
+            <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.about.title}</h2>
+
+            <div className="mt-8 border-l-2 border-accent pl-6">
+              <h3 className="text-[20px]">{slide.heading}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-muted-fg">{slide.body}</p>
+              <div className="mt-6 max-w-md">
+                <PlaceholderLines lines={3} />
+              </div>
+              <div className="mt-6">
+                <Todo label="Tekst nog aan te vullen" />
+              </div>
             </div>
 
-            <div className="flex flex-col justify-center bg-muted p-6 md:p-8 lg:col-span-8 lg:p-10">
-              {index === 0 && (
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                  <div>
-                    <h3 className="mb-4 text-2xl font-semibold text-ink md:text-3xl">
-                      {about.intro.title}
-                    </h3>
-                    <p className="leading-relaxed text-muted-fg">{about.intro.body}</p>
-                  </div>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                        Opleidingen
-                      </h4>
-                      <ul className="space-y-3">
-                        {about.intro.education.map((e, i) =>
-                          e.value ? (
-                            <li key={i} className="text-sm text-ink">
-                              {e.value}
-                            </li>
-                          ) : (
-                            <TodoLine key={i} label={e.label} />
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                        Ervaring
-                      </h4>
-                      <ul className="space-y-3">
-                        {about.intro.experience.map((e, i) =>
-                          e.value ? (
-                            <li key={i} className="text-sm text-ink">
-                              {e.value}
-                            </li>
-                          ) : (
-                            <TodoLine key={i} label={e.label} />
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {index === 1 && (
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                  <div>
-                    <h3 className="mb-4 text-2xl font-semibold text-ink md:text-3xl">
-                      {about.expertise.title}
-                    </h3>
-                    <p className="leading-relaxed text-muted-fg">{about.expertise.body}</p>
-                  </div>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                        Specialisaties
-                      </h4>
-                      <ul className="space-y-2">
-                        {about.expertise.specialisations.map((s) => (
-                          <li key={s} className="text-sm text-ink">
-                            {s}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                        Sectoren
-                      </h4>
-                      <ul className="space-y-2">
-                        {about.expertise.sectors.map((s) => (
-                          <li key={s} className="text-sm text-ink">
-                            {s}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {index === 2 && (
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                  <div>
-                    <h3 className="mb-4 text-2xl font-semibold text-ink md:text-3xl">
-                      {about.vision.title}
-                    </h3>
-                    {about.vision.body ? (
-                      <p className="leading-relaxed text-muted-fg">{about.vision.body}</p>
-                    ) : (
-                      <Todo label="Visietekst" />
-                    )}
-                  </div>
-                  <div>
-                    <h4 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-sea">
-                      Uitgangspunten
-                    </h4>
-                    <ul className="space-y-2">
-                      {about.vision.points.map((p) => (
-                        <li key={p} className="text-sm text-ink">
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => go(-1)}
-            aria-label="Vorige"
-            className="rounded-full border border-line bg-white p-3 text-ink transition-colors hover:bg-sea hover:text-white"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <div className="flex items-center gap-2">
-            {slides.map((s, i) => (
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <button
-                key={s.title}
                 type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Ga naar ${s.title}`}
-                aria-current={i === index}
-                className={`h-2 rounded-full transition-all ${
-                  i === index ? "w-8 bg-sea" : "w-2 bg-line hover:bg-sea/50"
-                }`}
-              />
-            ))}
-          </div>
-          <button
-            type="button"
-            onClick={() => go(1)}
-            aria-label="Volgende"
-            className="rounded-full border border-line bg-white p-3 text-ink transition-colors hover:bg-sea hover:text-white"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+                onClick={() => setIndex((i) => (i - 1 + slides.length) % slides.length)}
+                aria-label="Vorige"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent hover:text-accent"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                  <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => setIndex((i) => (i + 1) % slides.length)}
+                aria-label="Volgende"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent hover:text-accent"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              <div className="ml-1 flex items-center">
+                {slides.map((s, i) => (
+                  <button
+                    key={s.heading}
+                    type="button"
+                    onClick={() => setIndex(i)}
+                    aria-label={`Toon ${s.heading}`}
+                    aria-current={i === index}
+                    className="flex h-11 w-8 items-center justify-center"
+                  >
+                    <span
+                      className={`block h-2 rounded-full transition-all ${
+                        i === index ? "w-6 bg-accent" : "w-2 bg-line"
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {site.contact.email && (
+              <p className="mt-8 text-[15px] text-ink-soft">
+                Liever direct schakelen?{" "}
+                <a
+                  href={`mailto:${site.contact.email}`}
+                  className="font-medium text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent"
+                >
+                  {site.contact.email}
+                </a>
+              </p>
+            )}
+          </Reveal>
         </div>
       </div>
     </section>

@@ -1,97 +1,71 @@
-import { Mail, MapPin, Phone } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { Todo } from "@/components/Todo";
-import { contact, site } from "@/content/site";
-
-/** Merklogo's zitten niet meer in lucide-react v1 — LinkedIn dus inline. */
-function LinkedInIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.83v1.64h.05c.53-.96 1.83-1.97 3.77-1.97 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.19 1.45-2.19 2.96V21h-4V9Z" />
-    </svg>
-  );
-}
+import { site } from "@/content/site";
+import { Reveal } from "./Reveal";
+import { Todo } from "./Todo";
 
 export function Contact() {
-  const rows = [
-    { icon: Mail, label: "E-mail", value: site.email, href: site.email ? `mailto:${site.email}` : null },
-    { icon: Phone, label: "Telefoon", value: site.phone, href: site.phone ? `tel:${site.phone}` : null },
-    { icon: LinkedInIcon, label: "LinkedIn", value: site.linkedin, href: site.linkedin },
-    { icon: MapPin, label: "Locatie", value: site.location, href: null },
+  const { email, linkedin, location, kvk } = site.contact;
+
+  const rows: { label: string; value: string | null; href?: string }[] = [
+    { label: "E-mail", value: email, href: email ? `mailto:${email}` : undefined },
+    { label: "LinkedIn", value: linkedin, href: linkedin ?? undefined },
+    { label: "Locatie", value: location },
+    { label: "KvK / BTW", value: kvk },
   ];
 
   return (
-    <section id="contact" className="bg-muted py-20">
-      <div className="container mx-auto max-w-7xl px-4">
-        <Reveal className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-light text-ink md:text-5xl">{contact.heading}</h2>
-          <p className="mx-auto max-w-2xl text-muted-fg">{contact.lead}</p>
-        </Reveal>
-
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+    <section id="contact" className="border-t border-line bg-surface-alt py-20 lg:py-28">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <Reveal>
-            <div className="h-full rounded-2xl border border-line bg-white p-8 shadow-sm">
-              <h3 className="mb-4 text-xl font-semibold text-ink">{contact.messageTitle}</h3>
-              {contact.messageBody ? (
-                <p className="leading-relaxed text-muted-fg">{contact.messageBody}</p>
-              ) : (
-                <Todo label="Contactmogelijkheden" />
-              )}
-              {site.email ? (
-                <a
-                  href={`mailto:${site.email}`}
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-sea px-6 py-3 font-semibold text-white transition-colors hover:bg-sea-light"
-                >
-                  <Mail className="h-4 w-4" aria-hidden="true" />
-                  Mail mij
-                </a>
-              ) : (
-                <div className="mt-6">
-                  <Todo label="E-mailadres toevoegen" />
-                </div>
-              )}
-            </div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">Contact</p>
+            <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">
+              Laten we kennismaken
+            </h2>
+            <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-ink-soft">
+              Heb je een vraagstuk op het gebied van transport, logistiek, mobiliteit of data? Stuur
+              een bericht — dan denk ik graag mee over de aanpak.
+            </p>
+
+            {email && (
+              <a
+                href={`mailto:${email}`}
+                className="mt-9 inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+              >
+                Mail mij
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
           </Reveal>
 
-          <Reveal delay={0.08}>
-            <div className="h-full rounded-2xl border border-line bg-white p-8 shadow-sm">
-              <h3 className="mb-5 text-xl font-semibold text-ink">{contact.detailsTitle}</h3>
-              <ul className="space-y-5">
-                {rows.map((row) => {
-                  const Icon = row.icon;
-                  return (
-                    <li key={row.label} className="flex items-start gap-4">
-                      <span className="mt-0.5 rounded-lg bg-muted p-2.5">
-                        <Icon className="h-4 w-4 text-sea" aria-hidden="true" />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-muted-fg">
-                          {row.label}
-                        </span>
-                        {row.value ? (
-                          row.href ? (
-                            <a
-                              href={row.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="break-words font-medium text-ink hover:text-sea"
-                            >
-                              {row.value}
-                            </a>
-                          ) : (
-                            <span className="font-medium text-ink">{row.value}</span>
-                          )
-                        ) : (
-                          <span className="mt-1 block">
-                            <Todo />
-                          </span>
-                        )}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+          <Reveal delay={120}>
+            <dl className="divide-y divide-line border-y border-line">
+              {rows.map((row) => (
+                <div key={row.label} className="flex items-baseline justify-between gap-6 py-5">
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-fg">
+                    {row.label}
+                  </dt>
+                  <dd className="text-right text-[15px] text-ink">
+                    {row.value ? (
+                      row.href ? (
+                        <a
+                          href={row.href}
+                          className="text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent"
+                          {...(row.href.startsWith("http")
+                            ? { target: "_blank", rel: "noopener noreferrer" }
+                            : {})}
+                        >
+                          {row.value}
+                        </a>
+                      ) : (
+                        row.value
+                      )
+                    ) : (
+                      <Todo label="Nog aan te vullen" />
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </Reveal>
         </div>
       </div>

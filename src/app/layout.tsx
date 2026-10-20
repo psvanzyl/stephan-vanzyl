@@ -26,8 +26,10 @@ export const metadata: Metadata = {
     "transport",
     "logistiek",
     "mobiliteit",
+    "stadslogistiek",
     "laadinfrastructuur",
     "zero-emissie",
+    "vrachtwagenheffing",
     "open data",
     "advies",
     "Nederland",
@@ -40,11 +42,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "nl_NL",
     type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: `${site.name} — ${site.role}` }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${site.name} | ${site.role}`,
     description: site.tagline,
+    images: ["/og.jpg"],
   },
 };
 

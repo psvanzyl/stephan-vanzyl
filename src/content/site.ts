@@ -1,399 +1,344 @@
 /**
- * Alle tekst en data van de site op één plek.
+ * Alle teksten en links van de site op één plek.
  *
- * VELDEN DIE NOG INGEVULD MOETEN WORDEN staan als `null`. De UI rendert dan een
- * rustige "Nog aan te vullen"-markering in plaats van een lege regel. Zoek op
- * `TODO` om alles te vinden wat nog open is.
+ * Onbekende gegevens (cv, opdrachtgevers, referenties) staan leeg en worden in
+ * de UI als "nog aan te vullen" gemarkeerd. De software-sectie is géén
+ * placeholder: dat zijn de live tools van Stephan zelf, met echte links.
  */
 
 export type Maybe<T> = T | null;
 
-export const site = {
-  name: "Stephan van Zyl",
-  role: "Transportconsultant",
-  domain: "https://i.wegowow.duckdns.org",
-  tagline: "Advies, data en software voor transport, logistiek en mobiliteit.",
-  email: null as Maybe<string>, // TODO: e-mailadres om te publiceren
-  phone: null as Maybe<string>, // TODO: telefoonnummer
-  linkedin: null as Maybe<string>, // TODO: LinkedIn-URL
-  location: "Nederland", // TODO: stad toevoegen
-  kvk: null as Maybe<string>, // TODO: KvK-nummer
-  btw: null as Maybe<string>, // TODO: BTW-id
+export type NavItem = { label: string; href: string };
+
+export type Slide = {
+  src: string;
+  alt: string;
+  caption: string;
 };
 
-export const nav = [
-  { href: "#over", label: "Over" },
-  { href: "#focusgebieden", label: "Focusgebieden" },
-  { href: "#aanpak", label: "Aanpak" },
-  { href: "#projecten", label: "Projecten" },
-  { href: "#software", label: "Software" },
-  { href: "#contact", label: "Contact" },
-];
-
-export const hero = {
-  eyebrow: "Transportconsultant",
-  title: "Stephan van Zyl",
-  subtitle: site.tagline,
-  primaryCta: { href: "#contact", label: "Neem contact op" },
-  secondaryCta: { href: "#software", label: "Bekijk mijn werk" },
-  backgrounds: [
-    "/images/backgrounds/hero-1.svg",
-    "/images/backgrounds/hero-2.svg",
-    "/images/backgrounds/hero-3.svg",
-    "/images/backgrounds/hero-4.svg",
-    "/images/backgrounds/hero-5.svg",
-    "/images/backgrounds/hero-6.svg",
-  ],
-};
-
-export const services = {
-  kicker: "Advies en onderzoek",
-  lead: "Wat ik doe",
-  items: [
-    {
-      icon: "map",
-      title: "Data & dashboards",
-      body: "Openbare data over mobiliteit en infrastructuur omgezet in kaarten en dashboards die je direct kunt gebruiken.",
-    },
-    {
-      icon: "plug",
-      title: "Laadinfrastructuur & zero-emissie",
-      body: "Viewers en datasets rond laadpunten, laadprijzen en zero-emissie vervoer.",
-    },
-    {
-      icon: "truck",
-      title: "Transport & logistiek",
-      body: "Datasets en tools voor wegvervoer, vrachtwagenheffing en de economische gezondheid van de sector.",
-    },
-    {
-      icon: "activity",
-      title: "Simulatie & modellen",
-      body: "Vlootsimulatie en ruimtelijke modellen voor stadslogistiek en mobiliteit.",
-    },
-    {
-      icon: "database",
-      title: "Open data & API's",
-      body: "Koppelingen op openbare bronnen en open standaarden, met de nadruk op herhaalbaarheid en transparantie.",
-    },
-  ],
-};
-
-export const about = {
-  heading: "Over Stephan van Zyl",
-  intro: {
-    title: "Over mij",
-    eyebrow: site.role,
-    name: site.name,
-    body: "Ik werk op het snijvlak van transport, logistiek en mobiliteit, met data en software als gereedschap. Ik bouw toepassingen die openbare data ontsluiten en daar iets bruikbaars van maken.",
-    // TODO: persoonlijke introductie / CV-tekst aanleveren
-    education: [
-      { label: "Opleiding 1", value: null },
-      { label: "Opleiding 2", value: null },
-    ],
-    experience: [
-      { label: "Huidige rol", value: "Transportconsultant" },
-      { label: "Eerdere rol", value: null },
-      { label: "Eerdere rol", value: null },
-    ],
-  },
-  expertise: {
-    title: "Expertise",
-    eyebrow: site.role,
-    name: site.name,
-    body: "Ik combineer domeinkennis van transport en logistiek met de praktijk van data, kaarten en software.",
-    specialisations: [
-      "Datagedreven mobiliteit",
-      "Laadinfrastructuur & zero-emissie",
-      "Open data & standaarden",
-      "Simulatie & ruimtelijke modellen",
-      "Software & prototypes",
-    ],
-    sectors: [
-      "Transport, logistiek & mobiliteit",
-      "Laadinfrastructuur & energie",
-      "Overheid & kennisinstellingen",
-    ],
-  },
-  vision: {
-    title: "Visie",
-    eyebrow: site.role,
-    name: site.name,
-    body: null as Maybe<string>,
-    // TODO: visie-tekst aanleveren
-    points: [
-      "Open data en open standaarden als uitgangspunt",
-      "Eerst een werkend prototype, dan pas een plan",
-      "Oplossingen die door anderen hergebruikt kunnen worden",
-    ],
-  },
-};
-
-export const focus = {
-  heading: "Focusgebieden",
-  items: [
-    {
-      title: "Zero-emissie & laadinfrastructuur",
-      keywords:
-        "laadpunten, laadprijzen, dekkingsgraad, zero-emissiezones, elektrificatie van wagenparken",
-    },
-    {
-      title: "Slimme & datagedreven mobiliteit",
-      keywords:
-        "mobiliteitsdata, verkeerslichten, parkeren, stadslogistiek, netwerkanalyse",
-    },
-    {
-      title: "Open data & standaarden",
-      keywords:
-        "openbare bronnen, datakwaliteit, herhaalbaarheid, transparante methoden",
-    },
-    {
-      title: "Simulatie & modellen",
-      keywords:
-        "vlootsimulatie, ruimtebeslag van stadslogistiek, digitale tweelingen",
-    },
-  ],
-};
-
-export const approach = {
-  heading: "Aanpak",
-  lead: "Van open data naar een werkende toepassing: klein beginnen, snel laten zien, en dan verbeteren.",
-  items: [
-    {
-      title: "Van data naar inzicht",
-      body: "Ik begin bij de bron: welke openbare data bestaat er echt, hoe actueel is die en wat kun je ermee onderbouwen?",
-    },
-    {
-      title: "Snel een werkend prototype",
-      body: "In plaats van een lange voorstudie bouw ik een werkende versie die je zelf kunt openen en beoordelen.",
-    },
-    {
-      title: "Open en herbruikbaar",
-      body: "De toepassingen zijn open opgezet: de bronnen en werkwijze zijn navolgbaar en de resultaten zijn te hergebruiken.",
-    },
-  ],
-  cta: { href: "#contact", label: "Meer weten?" },
-  ctaBody: "Neem contact op voor een vrijblijvend gesprek.",
-};
-
-export type Project = {
+export type Service = {
   title: string;
-  period: Maybe<string>;
-  scope: Maybe<string>;
   body: string;
-  activities: string[];
-  client: Maybe<string>;
-  image: Maybe<string>;
-  links: { href: string; label: string }[];
+  icon: "compass" | "trending" | "code" | "kanban";
 };
 
-export const projects = {
-  heading: "Projecten",
-  lead: "Van meest recent naar ouder.",
-  items: [
-    {
-      title: "Laadinfrastructuur in Nederland",
-      period: null, // TODO: looptijd
-      scope: null, // TODO: projectvolume
-      body: "Een reeks viewers die het Nederlandse laadpuntennetwerk in kaart brengen: alle laadpunten, laadpunten bij sportlocaties en actuele laadprijzen per aanbieder.",
-      activities: [
-        "Ontsluiten van openbare laadpuntendata",
-        "Kaart- en dashboardontwikkeling",
-        "Vergelijking van laadprijzen per aanbieder",
-      ],
-      client: null, // TODO: opdrachtgever
-      image: null,
-      links: [
-        { href: "https://laadpalen.laserraptorai.duckdns.org", label: "Laadpalenviewer" },
-        { href: "https://sportlaadpalen.laserraptorai.duckdns.org", label: "Sportlaadpalen" },
-      ],
-    },
-    {
-      title: "Vrachtwagenheffing: netwerkanalyse",
-      period: null, // TODO: looptijd
-      scope: null,
-      body: "Een netwerkviewer rond de vrachtwagenheffing: welke wegen vallen onder de heffing en wat betekent dat voor ritplanning en kosten.",
-      activities: [
-        "Bewerken van netwerk- en tariefdata",
-        "Route- en kostenlogica",
-        "Interactieve netwerkkaart",
-      ],
-      client: null, // TODO: opdrachtgever
-      image: null,
-      links: [
-        {
-          href: "https://vrachtwagenheffing.laserraptorai.duckdns.org",
-          label: "Vrachtwagenheffing-netwerk",
-        },
-      ],
-    },
-    {
-      title: "Mobiliteitsdata in de openbare ruimte",
-      period: null, // TODO: looptijd
-      scope: null,
-      body: "Viewers voor parkeren en verkeerslichten, plus een ANPR-dashboard dat mobiliteitsstromen inzichtelijk maakt.",
-      activities: [
-        "Combineren van gemeentelijke en landelijke datasets",
-        "Kaartvisualisaties per gemeente",
-        "Controles op datakwaliteit en dekking",
-      ],
-      client: null, // TODO: opdrachtgever
-      image: null,
-      links: [
-        {
-          href: "https://parkeerdataviewer.laserraptorai.duckdns.org",
-          label: "Parkeerdataviewer",
-        },
-        {
-          href: "https://verkeerslichten.laserraptorai.duckdns.org",
-          label: "Verkeerslichtenviewer",
-        },
-        { href: "https://anpr-utrecht.laserraptorai.duckdns.org", label: "ANPR Utrecht" },
-      ],
-    },
-    {
-      title: "Economische gezondheid van het wegvervoer",
-      period: null, // TODO: looptijd
-      scope: null,
-      body: "Een dashboard dat faillissementen in het wegvervoer volgt op basis van openbare publicaties, met uitsplitsing naar regio en activiteit.",
-      activities: [
-        "Automatisch verzamelen van openbare publicaties",
-        "Normaliseren en categoriseren van bedrijfsactiviteiten",
-        "Dashboard met trends per regio",
-      ],
-      client: null, // TODO: opdrachtgever
-      image: null,
-      links: [
-        {
-          href: "https://faillissementen.laserraptorai.duckdns.org",
-          label: "Faillissementen wegvervoer",
-        },
-      ],
-    },
-  ] as Project[],
+export type FocusArea = {
+  title: string;
+  body: string;
+  items: string[];
 };
 
-export const clients = {
-  heading: "Opdrachtgevers",
-  // TODO: opdrachtgevers (namen en/of logo's) aanleveren
-  logos: [] as { src: string; alt: string }[],
+export type ApproachStep = {
+  step: string;
+  title: string;
+  body: string;
 };
 
 export type SoftwareItem = {
-  title: string;
-  body: string;
+  slug: string;
+  name: string;
+  desc: string;
+  url: string;
+  shot: string;
   tags: string[];
-  href: string;
-  image: Maybe<string>;
 };
 
-export const software = {
-  heading: "Software & prototypes",
-  lead: "Zelf ontwikkelde toepassingen rond transport, mobiliteit en data. Alle onderstaande links zijn live.",
-  filters: ["Alles", "Kaarten", "Tools", "Data"],
-  items: [
-    {
-      title: "Laadpalenviewer",
-      body: "Alle laadpunten in Nederland op één kaart, met inzoomen per gemeente en aanbieder.",
-      tags: ["Kaarten", "Data"],
-      href: "https://laadpalen.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Sportlaadpalen",
-      body: "Hoeveel sportlocaties in Nederland hebben nog geen laadpunt? Kaart plus telling.",
-      tags: ["Kaarten", "Data"],
-      href: "https://sportlaadpalen.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "EV Charging Price Viewer",
-      body: "Actuele laadprijzen per aanbieder naast elkaar, zodat tarieven vergelijkbaar worden.",
-      tags: ["Tools", "Data"],
-      href: "https://ev-charging.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Vrachtwagenheffing-netwerk",
-      body: "Netwerkviewer rond de vrachtwagenheffing: wegen, tarieven en de gevolgen voor ritten.",
-      tags: ["Kaarten"],
-      href: "https://vrachtwagenheffing.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Parkeerdataviewer",
-      body: "Parkeerdata per gemeente in kaart gebracht, met tarieven, zones en capaciteit.",
-      tags: ["Kaarten", "Data"],
-      href: "https://parkeerdataviewer.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Verkeerslichtenviewer",
-      body: "Alle verkeerslichten en hun configuratie op de kaart, als basis voor doorstromingsanalyse.",
-      tags: ["Kaarten"],
-      href: "https://verkeerslichten.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "FleetSim",
-      body: "Educatief platform voor vlootbeheer en transportlogistiek, met realistische voertuigsimulatie.",
-      tags: ["Tools"],
-      href: "https://fleetsim.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Ruimtemodel stadslogistiek",
-      body: "Model dat het ruimtebeslag van stadslogistiek in beeld brengt, per voertuigtype en tijdvenster.",
-      tags: ["Kaarten", "Tools"],
-      href: "https://ruimtemodel.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Basis Stadstwin",
-      body: "Een minimale, open digital twin per gemeente: lucht, geluid, mobiliteit en meer op één kaart.",
-      tags: ["Kaarten", "Data"],
-      href: "https://stadstwin.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Faillissementen wegvervoer",
-      body: "Dashboard dat faillissementen in het wegvervoer volgt op basis van openbare publicaties.",
-      tags: ["Data", "Tools"],
-      href: "https://faillissementen.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "AanZET",
-      body: "Dashboard rond zero-emissie transport: cijfers, voortgang en achtergronden op één plek.",
-      tags: ["Data"],
-      href: "https://aanzet.laserraptorai.duckdns.org",
-      image: null,
-    },
-    {
-      title: "Pakketpuntenviewer",
-      body: "Pakketpunt-netwerken in heel Nederland in kaart, per gemeente en vervoerder.",
-      tags: ["Kaarten"],
-      href: "https://pakketpunten.laserraptorai.duckdns.org",
-      image: null,
-    },
-  ] as SoftwareItem[],
-};
+export const site = {
+  name: "Stephan van Zyl",
+  role: "Transport- en mobiliteitsconsultant",
+  tagline:
+    "Advies, data en software voor duurzaam transport, stadslogistiek en mobiliteit in Nederland.",
+  domain: "https://i.wegowow.duckdns.org",
 
-export const testimonials = {
-  heading: "Referenties en aanbevelingen",
-  // TODO: referenties / aanbevelingen aanleveren
-  items: [] as { quote: string; name: string; role: Maybe<string>; org: Maybe<string> }[],
-};
+  contact: {
+    email: "psvanzyl@gmail.com" as Maybe<string>,
+    linkedin: null as Maybe<string>,
+    location: null as Maybe<string>,
+    kvk: null as Maybe<string>,
+  },
 
-export const contact = {
-  heading: "Neem contact op",
-  lead: "Heeft u vragen of wilt u meer informatie? Neem gerust contact op.",
-  messageTitle: "Stuur een bericht",
-  messageBody: null as Maybe<string>,
-  detailsTitle: "Contactgegevens",
-};
+  nav: [
+    { label: "Over", href: "#over" },
+    { label: "Diensten", href: "#diensten" },
+    { label: "Focusgebieden", href: "#focusgebieden" },
+    { label: "Aanpak", href: "#aanpak" },
+    { label: "Projecten", href: "#projecten" },
+    { label: "Software", href: "#software" },
+    { label: "Contact", href: "#contact" },
+  ] as NavItem[],
 
-export const footer = {
-  blurb:
-    "Transportconsultant. Advies, data en software voor transport, logistiek en mobiliteit.",
-  quickLinksTitle: "Snelle links",
-};
+  hero: {
+    kicker: "TRANSPORT & MOBILITEIT",
+    title: "TRANSPORT & MOBILITEIT",
+    titleAccent: "DATA-GEDREVEN",
+    subtitle:
+      "Ik werk aan duurzaam transport, stadslogistiek en mobiliteit — en bouw de kaarten, modellen en dashboards die daarbij horen.",
+    primary: { label: "Neem contact op", href: "#contact" },
+    secondary: { label: "Bekijk mijn werk", href: "#software" },
+    slides: [
+      { src: "/images/hero/hero-1.jpg", alt: "Vrachtwagen langs de Nederlandse snelweg", caption: "Wegtransport" },
+      { src: "/images/hero/hero-2.jpg", alt: "Intermodale containertrein op het spoor", caption: "Spoor & intermodaal" },
+      { src: "/images/hero/hero-3.jpg", alt: "Containerterminal in de haven", caption: "Zeehaven & containers" },
+      { src: "/images/hero/hero-4.jpg", alt: "Laadstations langs de snelweg in Nederland", caption: "Laadinfrastructuur" },
+      { src: "/images/hero/hero-5.jpg", alt: "Haven- en industriegebied op de Maasvlakte", caption: "Havenindustrie" },
+      { src: "/images/hero/hero-6.jpg", alt: "Vrachtwagen in stedelijke omgeving", caption: "Stedelijk transport" },
+    ] as Slide[],
+  },
+
+  services: {
+    eyebrow: "Diensten",
+    title: "Consultancy & onderzoek",
+    items: [
+      {
+        title: "Advies & onderzoek",
+        body: "Vraagstukken rond verduurzaming, laadinfrastructuur en logistieke netwerken, onderbouwd met data en analyse.",
+        icon: "compass",
+      },
+      {
+        title: "Data & modellen",
+        body: "Van open databronnen naar modellen en simulaties: ruimtegebruik, vlootopbouw, kosten en netwerken.",
+        icon: "trending",
+      },
+      {
+        title: "Software & dashboards",
+        body: "Kaarten, viewers en dashboards die besluitvorming ondersteunen — gebouwd en live gezet, niet alleen beschreven.",
+        icon: "code",
+      },
+      {
+        title: "Programma & project",
+        body: "Begeleiding van projecten en programma's, van pilot naar implementatie, inclusief samenwerking met partners.",
+        icon: "kanban",
+      },
+    ] as Service[],
+  },
+
+  /**
+   * Over mij — biografie, ervaring en opleiding zijn nog niet aangeleverd en
+   * blijven daarom leeg (placeholder). Vul aan zodra de tekst er is.
+   */
+  about: {
+    eyebrow: "Over",
+    title: "Wie ik ben",
+    slides: [
+      {
+        heading: "Profiel",
+        body: "Korte beschrijving van achtergrond, rol en wat ik voor opdrachtgevers doe.",
+      },
+      {
+        heading: "Ervaring",
+        body: "Werkervaring, opdrachtgevers en hoogtepunten uit de afgelopen jaren.",
+      },
+      {
+        heading: "Opleiding & achtergrond",
+        body: "Opleidingen, publicaties en relevante nevenactiviteiten.",
+      },
+    ],
+  },
+
+  focus: {
+    eyebrow: "Focusgebieden",
+    title: "Waar ik aan werk",
+    intro:
+      "Dit zijn de gebieden waarin ik de afgelopen jaren kaarten, modellen en analyses heb gebouwd — en waarvoor ik opdrachten aanneem.",
+    areas: [
+      {
+        title: "Duurzaam transport",
+        body: "Zero-emissie, laadinfrastructuur en de zakelijke kant van verduurzaming.",
+        items: [
+          "Laadinfrastructuur voor personenauto's én logistiek",
+          "Zero-emissie vrachtwagens en aanschafsubsidies",
+          "Vrachtwagenheffing en tolnetwerken",
+          "Verduurzaming van wagenparken",
+        ],
+      },
+      {
+        title: "Slim transport & stadslogistiek",
+        body: "Logistieke stromen, ruimtegebruik en verkeersmanagement in de stad.",
+        items: [
+          "Stadslogistiek en ruimtegebruik",
+          "Pakketpunten en last-mile netwerken",
+          "Slimme verkeerslichten en prioriteit",
+          "Parkeren, verkeersstromen en mobiliteitsdata",
+        ],
+      },
+      {
+        title: "Open data, modellen & datagovernance",
+        body: "Open bronnen ontsluiten en er bruikbare instrumenten van maken.",
+        items: [
+          "Open data: NDW, RDW, PDOK/CBS, OCPI",
+          "Modellen en simulatie van vloot en ruimte",
+          "Dashboards en datavisualisatie",
+          "Reproduceerbare en controleerbare analyses",
+        ],
+      },
+    ] as FocusArea[],
+  },
+
+  approach: {
+    eyebrow: "Aanpak",
+    title: "Hoe ik werk",
+    intro:
+      "Van open databron naar instrument dat gebruikt wordt: in korte stappen, met werkende software als tussenresultaat.",
+    steps: [
+      {
+        step: "01",
+        title: "Data als vertrekpunt",
+        body: "Openbare bronnen combineren tot één beeld van de werkelijkheid, met expliciete aannames en herleidbare cijfers.",
+      },
+      {
+        step: "02",
+        title: "Van analyse naar instrument",
+        body: "Een kaart, model of dashboard in plaats van een rapport dat in een la verdwijnt — direct te gebruiken in het gesprek.",
+      },
+      {
+        step: "03",
+        title: "Open en reproduceerbaar",
+        body: "Open standaarden en open data waar het kan, zodat resultaten navolgbaar zijn en niet afhankelijk van één leverancier.",
+      },
+      {
+        step: "04",
+        title: "Van pilot naar praktijk",
+        body: "Samen met de betrokken organisaties doorontwikkelen tot het in de dagelijkse praktijk werkt.",
+      },
+    ] as ApproachStep[],
+  },
+
+  projects: {
+    eyebrow: "Projecten",
+    title: "Projecten & opdrachten",
+    intro:
+      "Hier komt een selectie van projecten en opdrachten, van meest recent naar oud, met opdrachtgever, periode en resultaat.",
+    items: [] as { title: string; client: Maybe<string>; period: Maybe<string>; body: string }[],
+  },
+
+  /**
+   * Software & prototypes — de live tools van Stephan. Elke kaart linkt naar de
+   * werkende applicatie. Titels en omschrijvingen komen uit de apps zelf.
+   */
+  software: {
+    eyebrow: "Software & prototypes",
+    title: "Software & prototypes",
+    intro:
+      "Kaarten, modellen en dashboards die ik heb gebouwd rond logistiek, mobiliteit, energie en open data. Elke link gaat naar de werkende applicatie.",
+    filters: ["Alles", "Kaarten", "Dashboards", "Modellen"],
+    items: [
+      {
+        slug: "laadpalen",
+        name: "Laadpalenviewer",
+        desc: "Interactieve kaart van laadpunten in Nederland: personenauto-laadpunten (NDW OCPI) én logistieke laadpunten, per gemeente en provincie.",
+        url: "https://laadpalen.laserraptorai.duckdns.org/",
+        shot: "/images/software/laadpalen.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "pakketpunten",
+        name: "Pakketpuntenviewer",
+        desc: "Alle 18.000+ pakketpunten en pakketautomaten van Nederland — DHL, PostNL, DPD, InPost, Budbee, GLS, Amazon en meer — op één kaart.",
+        url: "https://pakketpunten.laserraptorai.duckdns.org/",
+        shot: "/images/software/pakketpunten.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "ruimtemodel",
+        name: "Ruimtemodel Stadslogistiek",
+        desc: "Model dat de benodigde ruimte voor logistieke activiteiten berekent, per voertuigtype en tijdvenster.",
+        url: "https://ruimtemodel.laserraptorai.duckdns.org/",
+        shot: "/images/software/ruimtemodel.webp",
+        tags: ["Modellen"],
+      },
+      {
+        slug: "fleetsim",
+        name: "FleetSim",
+        desc: "Simulatieplatform voor vlootbeheer en transportlogistiek: opbouw, inzet en kosten van een voertuigvloot.",
+        url: "https://fleetsim.laserraptorai.duckdns.org/",
+        shot: "/images/software/fleetsim.webp",
+        tags: ["Modellen"],
+      },
+      {
+        slug: "ev-charging",
+        name: "EV Charging Price Viewer",
+        desc: "Actuele laadprijzen (€/kWh, NDW OCPI) en brandstofprijzen (€/L) in Nederland, per gemeente met PDOK/CBS-grenzen.",
+        url: "https://ev-charging.laserraptorai.duckdns.org/",
+        shot: "/images/software/ev-charging.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "vrachtwagenheffing",
+        name: "Vrachtwagenheffing Netwerk",
+        desc: "Kaart van het tolnetwerk voor vrachtwagens: secties, route- en kostenberekening en export naar GeoJSON of GeoPackage.",
+        url: "https://vrachtwagenheffing.laserraptorai.duckdns.org/",
+        shot: "/images/software/vrachtwagenheffing.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "verkeerslichten",
+        name: "Verkeerslichtenviewer",
+        desc: "Kaart van intelligente verkeerslichten (iVRI) in Nederland, met locaties, prioriteitsklassen en statistieken uit het UDAP-netwerk.",
+        url: "https://verkeerslichten.laserraptorai.duckdns.org/",
+        shot: "/images/software/verkeerslichten.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "parkeerdataviewer",
+        name: "Parkeerdataviewer",
+        desc: "Real-time parkeerbezetting van parkeergarages in Nederland: beschikbaarheid, bezettingsgraad en historische data uit het NPR/RDW-netwerk.",
+        url: "https://parkeerdataviewer.laserraptorai.duckdns.org/",
+        shot: "/images/software/parkeerdataviewer.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "stadstwin",
+        name: "Basis Stadstwin",
+        desc: "Minimale digitale tweeling per Nederlandse gemeente: kies een gemeente en bekijk de open data op de kaart.",
+        url: "https://stadstwin.laserraptorai.duckdns.org/",
+        shot: "/images/software/stadstwin.webp",
+        tags: ["Kaarten"],
+      },
+      {
+        slug: "aanzet",
+        name: "AanZET ZE-truck Prijstracker",
+        desc: "Volgt de ontwikkeling van aanschafprijzen van zero-emissie vrachtwagens in Nederland op basis van AanZET-subsidiedata.",
+        url: "https://aanzet.laserraptorai.duckdns.org/",
+        shot: "/images/software/aanzet.webp",
+        tags: ["Dashboards"],
+      },
+      {
+        slug: "sportlaadpalen",
+        name: "Sportlaadpalen",
+        desc: "Dashboard met alle publieke laadpunten in Nederland en de vraag welke sportlocaties nog geen laadpunt hebben.",
+        url: "https://sportlaadpalen.laserraptorai.duckdns.org/",
+        shot: "/images/software/sportlaadpalen.webp",
+        tags: ["Dashboards"],
+      },
+      {
+        slug: "faillissementen",
+        name: "Faillissementen wegvervoer",
+        desc: "Faillissementen in SBI 49 (wegvervoer) afgezet tegen de dieselprijs — sectordashboard op open data.",
+        url: "https://faillissementen.laserraptorai.duckdns.org/",
+        shot: "/images/software/faillissementen.webp",
+        tags: ["Dashboards"],
+      },
+      {
+        slug: "anpr-utrecht",
+        name: "ANPR Netherlands Analysis Dashboard",
+        desc: "Analyse-dashboard op ANPR-data: verkeersstromen, herkomsten en patronen over een volledig jaar.",
+        url: "https://anpr-utrecht.laserraptorai.duckdns.org/",
+        shot: "/images/software/anpr-utrecht.webp",
+        tags: ["Dashboards"],
+      },
+    ] as SoftwareItem[],
+  },
+
+  references: {
+    eyebrow: "Referenties",
+    title: "Referenties en aanbevelingen",
+    quotes: [] as { quote: string; name: string; role: string }[],
+  },
+
+  footer: {
+    photoCredits: "/images/hero/CREDITS.json",
+    note: "Foto's: Wikimedia Commons (CC BY 2.0, CC BY 4.0, CC0).",
+  },
+} as const;
+
+export type Site = typeof site;

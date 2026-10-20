@@ -1,34 +1,47 @@
 "use client";
 
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
-/**
- * Rustige scroll-reveal. Respecteert prefers-reduced-motion automatisch via
- * framer-motion (viewport-once zodat het niet opnieuw animeert bij terugscrollen).
- */
+/** Rustige fade-up bij scrollen; respecteert prefers-reduced-motion via CSS. */
 export function Reveal({
   children,
-  className,
   delay = 0,
-  y = 24,
-  x = 0,
+  className = "",
 }: {
   children: ReactNode;
-  className?: string;
   delay?: number;
-  y?: number;
-  x?: number;
+  className?: string;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setShown(true);
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.05 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y, x }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
+    <div
+      ref={ref}
+      className={`transition-[opacity,transform] duration-700 ease-out ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+      } ${className}`}
+      style={{ transitionDelay: shown ? `${delay}ms` : "0ms" }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
