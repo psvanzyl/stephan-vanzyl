@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  /* Huisstijl — familiepalet (wegowow / wegoze). Eén plek om de site te herkleuren. */
+  --color-ink: #17393f;
+  --color-ink-800: #1f4a52;
+  --color-ink-900: #10282d;
+  --color-sea: #0f5c63;
+  --color-sea-light: #1a7c85;
+  --color-shallow: #4ecdc4;
+  --color-coral: #bc4626;
+  --color-sun: #f2c14e;
+  --color-sand: #fbf7f1;
+  --color-paper: #ffffff;
+  --color-muted: #f2ede5;
+  --color-muted-fg: #5b6f73;
+  --color-line: #e3ded5;
+
+  --font-sans: var(--font-plex-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+:root {
+  --tb-accent: var(--color-sea);
+  --tb-accent-hover: var(--color-sea-light);
+  --tb-heading-weight: 500;
+  --tb-heading-tracking: -0.015em;
+
+  /* shadcn/ui-tokens — dezelfde naamgeving als in het voorbeeld, zodat
+     extra shadcn-componenten zonder aanpassing passen. */
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #17393f;
+  --card: #ffffff;
+  --card-foreground: #17393f;
+  --primary: var(--tb-accent);
+  --primary-foreground: #ffffff;
+  --secondary: #10282d;
+  --secondary-foreground: #ffffff;
+  --muted: #f2ede5;
+  --muted-foreground: #5b6f73;
+  --accent: var(--tb-accent);
+  --accent-foreground: #ffffff;
+  --border: #e3ded5;
+  --input: #e3ded5;
+  --ring: var(--tb-accent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--tb-heading-weight);
+  letter-spacing: var(--tb-heading-tracking);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-muted);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tb-accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tb-accent-hover);
+}
+
+/* Rustige leesbare focus-state voor toetsenbordnavigatie. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--tb-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.hero-fade {
+  transition: opacity 1200ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-fade {
+    transition: none;
+  }
+}
