@@ -53,7 +53,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/70" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pt-32 pb-28">
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pt-32 pb-48 lg:pb-28">
         <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-white/75 [text-shadow:0_1px_14px_rgba(0,0,0,0.5)]">
           {site.hero.kicker}
         </p>
