@@ -5,8 +5,9 @@ import { site } from "@/content/site";
 import { Reveal } from "./Reveal";
 
 /**
- * "Over" — hier komt de persoon (portret + tekst). De inhoud is nog niet
- * aangeleverd, dus de tekstvlakken zijn zichtbaar gereserveerd.
+ * "Over" — hier komt de persoon (portret + tekst). Zolang er geen portret en
+ * geen biotekst is aangeleverd tonen we een compacte monogramkaart en laten we
+ * het tekstblok weg, in plaats van een groot leeg vlak of een "volgt"-melding.
  */
 export function About() {
   const slides = site.about.slides;
@@ -21,7 +22,9 @@ export function About() {
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-br from-accent to-accent-dark">
+            {/* max-w-[300px] hoort bij het ontbreken van een portret: haal die
+                beperking weg (en zet de foto erin) zodra Stephan een foto aanlevert. */}
+            <div className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-xl bg-gradient-to-br from-accent to-accent-dark">
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                 <span className="text-[76px] leading-none font-light text-white/90">SvZ</span>
               </div>
