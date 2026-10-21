@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { site } from "@/content/site";
 import { Reveal } from "./Reveal";
-import { Todo, PlaceholderLines } from "./Todo";
 
 /**
  * "Over" — hier komt de persoon (portret + tekst). De inhoud is nog niet
@@ -13,6 +12,9 @@ export function About() {
   const slides = site.about.slides;
   const [index, setIndex] = useState(0);
   const slide = slides[index];
+  // Blokken zonder aangeleverde tekst tonen we niet: een lege sectie is
+  // netter dan een sectie die zegt dat hij nog gevuld moet worden.
+  const hasAboutBody = slides.some((s) => (s.body ?? "").trim().length > 0);
 
   return (
     <section id="over" className="bg-surface py-20">
@@ -22,9 +24,6 @@ export function About() {
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-br from-accent to-accent-dark">
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                 <span className="text-[76px] leading-none font-light text-white/90">SvZ</span>
-                <span className="mt-5 font-mono text-[11px] uppercase tracking-[0.24em] text-white/60">
-                  Portret volgt
-                </span>
               </div>
             </div>
           </Reveal>
@@ -35,16 +34,12 @@ export function About() {
             </p>
             <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.about.title}</h2>
 
-            <div className="mt-8 border-l-2 border-accent pl-6">
-              <h3 className="text-[20px]">{slide.heading}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted-fg">{slide.body}</p>
-              <div className="mt-6 max-w-md">
-                <PlaceholderLines lines={3} />
+            {hasAboutBody && (
+              <>
+              <div className="mt-8 border-l-2 border-accent pl-6">
+                <h3 className="text-[20px]">{slide.heading}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted-fg">{slide.body}</p>
               </div>
-              <div className="mt-6">
-                <Todo label="Tekst nog aan te vullen" />
-              </div>
-            </div>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <button
@@ -87,6 +82,8 @@ export function About() {
                 ))}
               </div>
             </div>
+              </>
+            )}
 
             {site.contact.email && (
               <p className="mt-8 text-[15px] text-ink-soft">

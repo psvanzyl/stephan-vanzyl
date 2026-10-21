@@ -47,7 +47,9 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {site.nav.map((item) => (
+          {site.nav
+            .filter((item) => item.href !== "#projecten" || site.projects.items.length > 0)
+            .map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -94,7 +96,9 @@ export function Header() {
       {open && (
         <div id="mobile-nav" className="border-t border-line bg-surface lg:hidden">
           <nav className="mx-auto max-w-[1280px] px-6 py-4">
-            {site.nav.map((item) => (
+            {site.nav
+              .filter((item) => item.href !== "#projecten" || site.projects.items.length > 0)
+              .map((item) => (
               <a
                 key={item.href}
                 href={item.href}

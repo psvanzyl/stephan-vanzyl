@@ -5,6 +5,9 @@ import { Todo } from "./Todo";
 export function References() {
   const quotes = site.references.quotes;
 
+  // Geen aanbevelingen aangeleverd: sectie overslaan (geen lege quote).
+  if (quotes.length === 0) return null;
+
   return (
     <section id="referenties" className="bg-night py-20 text-white">
       <div className="mx-auto max-w-[1280px] px-6">

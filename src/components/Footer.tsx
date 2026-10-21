@@ -17,7 +17,9 @@ export function Footer() {
           <nav aria-label="Voetnavigatie">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/55">Menu</p>
             <ul className="mt-4 space-y-2.5">
-              {site.nav.map((item) => (
+              {site.nav
+                .filter((item) => item.href !== "#projecten" || site.projects.items.length > 0)
+                .map((item) => (
                 <li key={item.href}>
                   <a href={item.href} className="inline-block py-0.5 text-[14px] text-white/70 hover:text-white">
                     {item.label}
@@ -51,19 +53,13 @@ export function Footer() {
                     LinkedIn
                   </a>
                 </li>
-              ) : (
-                <li className="text-white/35">LinkedIn — nog aan te vullen</li>
-              )}
+              ) : null}
               {site.contact.location ? (
                 <li className="text-white/70">{site.contact.location}</li>
-              ) : (
-                <li className="text-white/35">Locatie — nog aan te vullen</li>
-              )}
+              ) : null}
               {site.contact.kvk ? (
                 <li className="text-white/70">KvK {site.contact.kvk}</li>
-              ) : (
-                <li className="text-white/35">KvK — nog aan te vullen</li>
-              )}
+              ) : null}
             </ul>
           </div>
         </div>

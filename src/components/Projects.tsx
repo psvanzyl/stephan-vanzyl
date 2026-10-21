@@ -10,6 +10,10 @@ export function Projects() {
   const items = site.projects.items;
   const slots = [1, 2, 3];
 
+  // Nog geen projecten aangeleverd: sectie niet tonen in plaats van een
+  // rij lege skeletkaarten. Zodra items gevuld is, verschijnt de sectie.
+  if (items.length === 0) return null;
+
   return (
     <section id="projecten" className="bg-surface-alt py-20">
       <div className="mx-auto max-w-[1280px] px-6">

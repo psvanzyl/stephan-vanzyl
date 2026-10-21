@@ -12,6 +12,9 @@ export function Contact() {
     { label: "KvK / BTW", value: kvk },
   ];
 
+  // Rijen zonder waarde renderen we niet: geen "nog aan te vullen" in beeld.
+  const visibleRows = rows.filter((row) => row.value);
+
   return (
     <section id="contact" className="border-t border-line bg-surface-alt py-20">
       <div className="mx-auto max-w-[1280px] px-6">
@@ -39,7 +42,7 @@ export function Contact() {
 
           <Reveal delay={120}>
             <dl className="divide-y divide-line border-y border-line">
-              {rows.map((row) => (
+              {visibleRows.map((row) => (
                 <div key={row.label} className="flex items-baseline justify-between gap-6 py-5">
                   <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-fg">
                     {row.label}

@@ -1,9 +1,11 @@
 /**
  * Alle teksten en links van de site op één plek.
  *
- * Onbekende gegevens (cv, opdrachtgevers, referenties) staan leeg en worden in
- * de UI als "nog aan te vullen" gemarkeerd. De software-sectie is géén
- * placeholder: dat zijn de live tools van Stephan zelf, met echte links.
+ * Onbekende gegevens (cv, opdrachtgevers, referenties) staan leeg. De UI
+ * verbergt lege blokken en rijen; er staat nergens "nog aan te vullen" in
+ * beeld. Zodra een waarde hier wordt ingevuld, komt het blok vanzelf terug.
+ * De software-sectie is géén placeholder: dat zijn de live tools van Stephan
+ * zelf, met echte links.
  */
 
 export type Maybe<T> = T | null;
@@ -182,15 +184,15 @@ export const site = {
     slides: [
       {
         heading: "Profiel",
-        body: "Korte beschrijving van achtergrond, rol en wat ik voor opdrachtgevers doe.",
+        body: "", // nog aan te leveren
       },
       {
         heading: "Ervaring",
-        body: "Werkervaring, opdrachtgevers en hoogtepunten uit de afgelopen jaren.",
+        body: "", // nog aan te leveren
       },
       {
         heading: "Opleiding & achtergrond",
-        body: "Opleidingen, publicaties en relevante nevenactiviteiten.",
+        body: "", // nog aan te leveren
       },
     ],
   },
