@@ -51,19 +51,20 @@ export function Hero() {
       ))}
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 pt-32 pb-28">
-        <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-white/65">
+        <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-white/75 [text-shadow:0_1px_14px_rgba(0,0,0,0.5)]">
           {site.hero.kicker}
         </p>
 
-        <h1 className="mt-6 max-w-4xl text-[38px] leading-[1.08] font-light tracking-tight sm:text-[54px] lg:text-[72px]">
+        <h1 className="mt-6 max-w-4xl text-[38px] leading-[1.08] font-light tracking-tight [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-[54px] lg:text-[72px]">
           {site.hero.title}
           <br />
           <span className="text-[#8fc7e0]">{site.hero.titleAccent}</span>
         </h1>
 
-        <p className="mt-7 max-w-2xl text-[17px] leading-relaxed text-white/80">
+        <p className="mt-7 max-w-2xl text-[17px] leading-relaxed text-white/80 [text-shadow:0_1px_16px_rgba(0,0,0,0.5)]">
           {site.hero.subtitle}
         </p>
 
@@ -84,7 +85,7 @@ export function Hero() {
       </div>
 
       {/* Roterende beelden: bedienbaar, en het label vertelt wat je ziet. */}
-      <div className="absolute inset-x-0 bottom-0 z-10 border-t border-white/15 bg-black/25 backdrop-blur-[2px]">
+      <div className="absolute inset-x-0 bottom-16 z-10 border-t border-white/15 bg-black/35 backdrop-blur-[2px]">
         <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-4">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/70">
             <span className="text-white">
