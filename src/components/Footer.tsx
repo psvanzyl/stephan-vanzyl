@@ -15,11 +15,11 @@ export function Footer() {
           </div>
 
           <nav aria-label="Voetnavigatie">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">Menu</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/55">Menu</p>
             <ul className="mt-4 space-y-2.5">
               {site.nav.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="text-[14px] text-white/70 hover:text-white">
+                  <a href={item.href} className="inline-block py-0.5 text-[14px] text-white/70 hover:text-white">
                     {item.label}
                   </a>
                 </li>
@@ -28,13 +28,13 @@ export function Footer() {
           </nav>
 
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">Contact</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/55">Contact</p>
             <ul className="mt-4 space-y-2.5 text-[14px]">
               {site.contact.email && (
                 <li>
                   <a
                     href={`mailto:${site.contact.email}`}
-                    className="text-white/70 hover:text-white"
+                    className="inline-block py-0.5 text-white/70 hover:text-white"
                   >
                     {site.contact.email}
                   </a>
@@ -46,7 +46,7 @@ export function Footer() {
                     href={site.contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white"
+                    className="inline-block py-0.5 text-white/70 hover:text-white"
                   >
                     LinkedIn
                   </a>
@@ -70,7 +70,7 @@ export function Footer() {
 
         {/* Bronnen: de openbare registers en standaarden achter het werk. */}
         <div className="mt-12 border-t border-white/10 pt-7">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/55">
             Bronnen
           </p>
           <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2.5">
@@ -80,7 +80,7 @@ export function Footer() {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[13px] text-white/60 hover:text-white"
+                  className="inline-block py-0.5 text-[13px] text-white/60 hover:text-white"
                 >
                   {source.name}
                 </a>
@@ -89,12 +89,12 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-7 text-[12.5px] text-white/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-7 text-[12.5px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.name}
           </p>
           <p>
-            <a href={site.footer.photoCredits} className="hover:text-white/70">
+            <a href={site.footer.photoCredits} className="inline-block py-1 hover:text-white/70">
               {site.footer.note}
             </a>
           </p>

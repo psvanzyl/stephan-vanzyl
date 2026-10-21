@@ -30,7 +30,7 @@ export function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent-ink">
               {site.about.eyebrow}
             </p>
             <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.about.title}</h2>
@@ -51,7 +51,7 @@ export function About() {
                 type="button"
                 onClick={() => setIndex((i) => (i - 1 + slides.length) % slides.length)}
                 aria-label="Vorige"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent hover:text-accent"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent-ink hover:text-accent-ink"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
                   <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -61,7 +61,7 @@ export function About() {
                 type="button"
                 onClick={() => setIndex((i) => (i + 1) % slides.length)}
                 aria-label="Volgende"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent hover:text-accent"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent-ink hover:text-accent-ink"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
                   <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -93,7 +93,7 @@ export function About() {
                 Liever direct schakelen?{" "}
                 <a
                   href={`mailto:${site.contact.email}`}
-                  className="font-medium text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent"
+                  className="font-medium text-accent-ink underline decoration-accent-ink/30 underline-offset-4 hover:decoration-accent-ink"
                 >
                   {site.contact.email}
                 </a>

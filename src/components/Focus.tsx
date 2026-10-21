@@ -6,7 +6,7 @@ export function Focus() {
     <section id="focusgebieden" className="bg-surface-alt py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent-ink">
             {site.focus.eyebrow}
           </p>
           <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.focus.title}</h2>

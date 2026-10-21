@@ -53,19 +53,19 @@ export function Services() {
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <Reveal>
-            <article className="flex h-full flex-col justify-between rounded-xl bg-accent p-7 text-white shadow-[0_18px_50px_-30px_rgba(25,20,20,0.5)]">
-              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/75">
+            <article className="flex h-full flex-col justify-between rounded-xl bg-accent-ink p-7 text-white shadow-[0_18px_50px_-30px_rgba(25,20,20,0.5)]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/90">
                 {site.services.eyebrow}
               </p>
               <h2 className="mt-8 text-[26px] leading-tight font-light">{site.services.title}</h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-white/85">{site.services.intro}</p>
+              <p className="mt-4 text-[15px] leading-relaxed text-white/90">{site.services.intro}</p>
             </article>
           </Reveal>
 
           {site.services.items.map((service, i) => (
             <Reveal key={service.title} delay={(i + 1) * 70}>
               <article className="flex h-full flex-col rounded-xl border border-line bg-surface p-7 shadow-[0_18px_50px_-34px_rgba(25,20,20,0.45)] transition-shadow hover:shadow-[0_22px_60px_-30px_rgba(25,20,20,0.5)]">
-                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-soft text-accent-ink">
                   <svg
                     width="21"
                     height="21"

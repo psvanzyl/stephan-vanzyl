@@ -17,7 +17,7 @@ export function Contact() {
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">Contact</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent-ink">Contact</p>
             <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">
               Laten we kennismaken
             </h2>
@@ -29,7 +29,7 @@ export function Contact() {
             {email && (
               <a
                 href={`mailto:${email}`}
-                className="mt-9 inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+                className="mt-9 inline-flex items-center gap-3 rounded-full bg-accent-ink px-8 py-4 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
               >
                 Mail mij
                 <span aria-hidden="true">→</span>
@@ -49,7 +49,7 @@ export function Contact() {
                       row.href ? (
                         <a
                           href={row.href}
-                          className="text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent"
+                          className="text-accent-ink underline decoration-accent-ink/30 underline-offset-4 hover:decoration-accent-ink"
                           {...(row.href.startsWith("http")
                             ? { target: "_blank", rel: "noopener noreferrer" }
                             : {})}

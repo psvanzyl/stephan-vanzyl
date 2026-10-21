@@ -15,7 +15,13 @@
   --color-muted-fg: #4b5563;
   --color-faint-fg: #9ca3af;
   --color-accent: #2e7fa6;
-  --color-accent-dark: #256a8c;
+  /* Tekstveilig accent. #2E7FA6 haalt op #F6F6F6 maar 4,1:1 en op wit 4,5:1 —
+     net onder de WCAG AA-eis van 4,5:1 voor kleine tekst. Deze tint is identiek
+     van kleur, iets donkerder, en haalt 5,4:1 op #F6F6F6 en 6,0:1 op wit. Gebruik
+     --color-accent voor vlakken/randen/decoratie, --color-accent-ink voor tekst en
+     voor witte tekst op een accentvlak. */
+  --color-accent-ink: #256a8c;
+  --color-accent-dark: #1d5570;
   --color-accent-soft: #e8f2f8;
   --color-surface: #ffffff;
   --color-surface-alt: #f6f6f6;

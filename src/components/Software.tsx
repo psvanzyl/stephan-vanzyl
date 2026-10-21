@@ -33,7 +33,7 @@ export function Software() {
     <section id="software" className="bg-surface py-20">
       <div className="mx-auto max-w-[1280px] px-6">
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent-ink">
             {site.software.eyebrow}
           </p>
           <h2 className="mt-4 text-[30px] leading-tight sm:text-[36px]">{site.software.title}</h2>
@@ -54,8 +54,8 @@ export function Software() {
                   aria-pressed={isActive}
                   className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-[14px] transition-colors ${
                     isActive
-                      ? "border-accent bg-accent text-white"
-                      : "border-line text-ink-soft hover:border-accent hover:text-accent"
+                      ? "border-accent-ink bg-accent-ink text-white"
+                      : "border-line text-ink-soft hover:border-accent-ink hover:text-accent-ink"
                   }`}
                 >
                   {filter}
@@ -94,7 +94,7 @@ export function Software() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-accent-soft px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-accent"
+                        className="rounded-full bg-accent-soft px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-accent-ink"
                       >
                         {tag}
                       </span>
@@ -102,7 +102,7 @@ export function Software() {
                   </div>
                   <h3 className="mt-4 text-[19px] leading-snug">{item.name}</h3>
                   <p className="mt-3 text-[14.5px] leading-relaxed text-muted-fg">{item.desc}</p>
-                  <span className="mt-auto pt-6 text-[14px] font-medium text-accent">
+                  <span className="mt-auto pt-6 text-[14px] font-medium text-accent-ink">
                     Bekijk de app
                     <span className="ml-1.5 inline-block transition-transform group-hover:translate-x-1">
                       →
@@ -135,9 +135,9 @@ export function Software() {
                     rel="noopener noreferrer"
                     className="group block"
                   >
-                    <span className="text-[15px] font-medium text-ink group-hover:text-accent">
+                    <span className="text-[15px] font-medium text-ink group-hover:text-accent-ink">
                       {source.name}
-                      <span className="ml-1 inline-block text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                      <span className="ml-1 inline-block text-accent-ink opacity-0 transition-opacity group-hover:opacity-100">
                         ↗
                       </span>
                     </span>

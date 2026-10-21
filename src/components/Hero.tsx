@@ -70,7 +70,7 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center gap-3">
           <a
             href={site.hero.primary.href}
-            className="rounded-full bg-accent px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
+            className="rounded-full bg-accent-ink px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-accent-dark"
           >
             {site.hero.primary.label}
           </a>
